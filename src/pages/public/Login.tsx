@@ -8,7 +8,7 @@ import { auth, db } from '../../firebaseConfig';
 import { doc, setDoc } from 'firebase/firestore';
 
 const Login = () => {
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, _setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [confirmarSenha, setConfirmarSenha] = useState('');
@@ -16,7 +16,7 @@ const Login = () => {
   const { setUser } = useUser();
   const navigate = useNavigate();
 
-  const handleToggle = () => setIsLogin(!isLogin);
+  // const handleToggle = () => setIsLogin(!isLogin);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
