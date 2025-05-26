@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",  // Configuração para armazenar os arquivos de build
+    "target": "ES2020",  // O código será compilado para o ES2020 (bom para navegadores modernos)
+    "useDefineForClassFields": true,  // Garantir que campos de classe sejam tratados corretamente
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],  // Adiciona as bibliotecas necessárias para JavaScript moderno e DOM
+    "module": "ESNext",  // Usar ESNext como o sistema de módulos (import/export)
+    "skipLibCheck": true,  // Ignora a verificação de tipos em arquivos de bibliotecas, para melhorar o desempenho
+    "moduleResolution": "bundler",  // Resolução de módulos específica para bundlers como Webpack ou Vite
+    "allowImportingTsExtensions": true,  // Permite importar arquivos .ts com a extensão
+    "isolatedModules": true,  // Cada arquivo será tratado como um módulo isolado (necessário para o JSX em TypeScript)
+    "moduleDetection": "force",  // Força a detecção do tipo de módulo mesmo em arquivos JS/TS misturados
+    "noEmit": true,  // Não emite arquivos no final da compilação (geralmente usado para um projeto que usa bundlers)
+    "jsx": "react-jsx",  // Configuração necessária para JSX no React 17+
+    
+    /* Linting */
+    "strict": true,  // Habilita todas as verificações de tipo estritas
+    "noUnusedLocals": true,  // Garante que não haja variáveis locais não utilizadas
+    "noUnusedParameters": true,  // Garante que não haja parâmetros de funções não utilizados
+    "noFallthroughCasesInSwitch": true,  // Garante que não haja "fall-through" em switch statements
+    "noUncheckedSideEffectImports": true  // Garante que todos os imports com efeitos colaterais sejam verificados
+  },
+  "include": ["src"]  // Inclui todos os arquivos dentro da pasta 'src'
+}

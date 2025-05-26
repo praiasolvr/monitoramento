@@ -1,0 +1,623 @@
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\components\Combobox.tsx
+import React, { useState } from 'react';
+
+interface Option {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  options: Option[];
+  onChange: (value: string) => void;
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\components\FormularioCliente.tsx
+// src/components/FormularioCliente.tsx
+import React, { useState, useEffect } from 'react';
+import { colorAzul } from '../values/colors';
+
+interface Cliente {
+  id?: string;
+  nome: string;
+  contatos: { tipo: string; valor: string }[];
+  endereco?: string;
+  cidade?: string;
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\components\Header.tsx
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { colorBranco } from '../values/colors';
+
+const Header = () => {
+  const location = useLocation();
+  const [isDark ] = useState(false);
+  const [menuAberto, setMenuAberto] = useState(false); // Estado para controle do menu
+
+  const toggleMenu = () => setMenuAberto(!menuAberto); // Alterna estado do menu
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\components\PublicSidebar.tsx
+import React from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useUser } from '../contexts/UserContext';
+import Swal from 'sweetalert2';
+import { FiLogOut, FiCalendar, FiClock, FiHome } from 'react-icons/fi';
+
+interface PublicSidebarProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\components\Sidebar.tsx
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { FaHome, FaUsers, FaTools, FaSignOutAlt, FaPlus } from 'react-icons/fa'; // Importando ícone para "Cadastrar"
+import { useUser } from '../contexts/UserContext';
+import { getAuth, signOut } from 'firebase/auth';
+
+interface SidebarProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\contexts\UserContext.tsx
+// src/contexts/UserContext.tsx
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { auth } from '../firebaseConfig'; // Importa a configuração do Firebase (auth)
+
+// Definindo o tipo do usuário que será armazenado no estado do contexto
+interface User {
+  email: string | null;    // E-mail do usuário
+  uid: string | null;      // ID único do usuário (identificador único)
+  displayName: string | null; // Nome exibido do usuário (caso tenha configurado no Firebase)
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\layouts\DashboardLayout.tsx
+import { Outlet, Link } from 'react-router-dom';
+import { FaUsers, FaTools, FaHome } from 'react-icons/fa';
+import { useUser } from '../contexts/UserContext';
+
+const DashboardLayout = () => {
+  const { logout } = useUser();
+
+  return (
+    <div style={{ display: 'flex', minHeight: '100vh' }}>
+      <nav style={{ width: '250px', background: '#0d6efd', color: 'white', padding: '1rem' }}>
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\layouts\PrivateLayout.tsx
+// src/layouts/PrivateLayout.tsx
+import React, { useState, useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
+import Sidebar from '../components/Sidebar';
+
+const PrivateLayout: React.FC = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth >= 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\layouts\PublicLayout.tsx
+import React, { useEffect, useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import PublicSidebar from '../components/PublicSidebar';
+
+const PublicLayout: React.FC = () => {
+  // Define se a tela é mobile
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  // Define se a sidebar está aberta
+  const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth >= 768);
+
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\pages\admin\CadastrarCliente.tsx
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { colorAzul, colorBranco } from '../../values/colors';
+import ClienteRepository from '../../repositories/ClienteRepository';
+import Swal from 'sweetalert2';
+
+interface Contato {
+  tipo: string;
+  valor: string;
+  erro: string;
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\pages\admin\CadastrarServico.tsx
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { colorAzul } from '../../values/colors';
+import servicoeRepository from '../../repositories/ServicoRepository';
+import clienteRepository from '../../repositories/ClienteRepository';
+import Swal from 'sweetalert2';
+import { NumericFormat } from 'react-number-format';
+import { Servico } from '../../types/Servico';
+import { Cliente } from '../../types/Cliente';
+import Select from 'react-select';
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\pages\admin\CadastrarTipoServico.tsx
+import React, { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
+import tipoServicoRepository from '../../repositories/TipoServicoRepository';
+import { colorAzul } from '../../values/colors';
+
+/**
+ * Componente para cadastrar, listar, editar e excluir tipos de serviço.
+ */
+const CadastrarTipoServico = () => {
+  const [tipoServico, setTipoServico] = useState<string>(''); // Nome digitado
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\pages\admin\Clientes.tsx
+// src/pages/admin/Clientes.tsx
+
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { colorAzul } from '../../values/colors';
+import ClienteRepository from '../../repositories/ClienteRepository';
+import Swal from 'sweetalert2';
+import { Edit2, Trash2, Users } from 'lucide-react';
+
+// Tipagens auxiliares
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\pages\admin\EditarCliente.tsx
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import ClienteRepository from '../../repositories/ClienteRepository';
+import { Contato } from '../../types/Cliente';
+
+const EditarCliente = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  const [cliente, setCliente] = useState({
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\pages\admin\Servicos.tsx
+// src/pages/admin/Servicos.tsx
+
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { colorAzul } from '../../values/colors';
+import ServicoRepository from '../../repositories/ServicoRepository';
+import Swal from 'sweetalert2';
+
+interface Servico {
+  id: string;
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\pages\admin\VisualizarSolicitacoes.tsx
+// Importações essenciais para o funcionamento do componente
+import React, { useState, useEffect } from 'react';
+import { getDocs, collection } from 'firebase/firestore';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { db } from '../../firebaseConfig'; // Configuração do Firebase
+import Swal from 'sweetalert2'; // Biblioteca para alertas
+
+const VisualizarSolicitacoes: React.FC = () => {
+    // Estados para armazenar os usuários e solicitações
+    const [usuarios, setUsuarios] = useState<any[]>([]);
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\pages\client\Dashboard.tsx
+// src/pages/client/Dashboard.tsx
+
+import { useUser } from '../../contexts/UserContext';
+import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { FaUsers, FaCogs, FaSignOutAlt, FaPlus } from 'react-icons/fa';
+import { colorAzul, colorBranco } from '../../values/colors';
+
+/**
+ * Componente de dashboard principal após login.
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\pages\protected\ProtectedRoute.tsx
+// src/pages/protected/ProtectedRoute.tsx
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+import { useUser } from '../../contexts/UserContext'; // Importa o hook que gerencia o estado de usuário
+
+// Componente de rota protegida
+const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { user } = useUser(); // Obtém o usuário do contexto
+
+  // Verifica se o usuário está logado
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\pages\public\DashboardClientePublico.tsx
+// src/pages/public/DashboardClientePublico.tsx
+
+/**
+ * Painel de controle para clientes públicos autenticados
+ * Mostra o nome do cliente e opções para acessar seus agendamentos e histórico de serviços
+ * Estilizado com azul claro, diferente do painel administrativo
+ */
+
+import { useUser } from '../../contexts/UserContext'; // Contexto do usuário (autenticação)
+import { useNavigate } from 'react-router-dom'; // Navegação programática
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\pages\public\Home.tsx
+import { Link } from 'react-router-dom';
+import { colorAzul, colorBranco } from '../../values/colors';
+
+const Home = () => {
+  return (
+    <div style={{ backgroundColor: '#f7f9fc', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <main style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '3rem 1rem' }}>
+        <div style={{ textAlign: 'center', maxWidth: '800px' }}>
+          <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: colorAzul }}>
+            Bem-vindo aos <span style={{ color: '#0d6efd' }}>Serviços de videomonitoramento</span>
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\pages\public\Login.tsx
+import Swal from 'sweetalert2';
+import React, { useState } from 'react';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import { useUser } from '../../contexts/UserContext';
+import { colorAzul, colorBranco } from '../../values/colors';
+import { auth, db } from '../../firebaseConfig';
+import { doc, setDoc } from 'firebase/firestore';
+
+const Login = () => {
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\pages\public\MinhasSolicitacoes.tsx
+import React, { useEffect, useState } from 'react';
+import { doc, collection, getDocs, query, where, limit, startAfter } from 'firebase/firestore';
+import { auth, db } from '../../firebaseConfig'; // Importando auth corretamente
+import Swal from 'sweetalert2';
+import { motion } from 'framer-motion';
+import { FaCarSide, FaRegClock, FaExclamationCircle, FaCheckCircle } from 'react-icons/fa';
+
+interface Solicitacao {
+  id: string;
+  veiculo?: string;
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\pages\public\NovaSolicitacao.tsx
+import React, { useState } from 'react';
+import { criarSolicitacao } from '../../repositories/SolicitacaoRepository';
+import { useUser } from '../../contexts/UserContext';
+import Swal from 'sweetalert2';
+import { FaCarSide, FaClipboard, FaRegClock, FaExclamationCircle } from 'react-icons/fa';
+
+const NovaSolicitacao: React.FC = () => {
+  const { user } = useUser();
+  const [dataInicio, setDataInicio] = useState('');
+  const [dataFim, setDataFim] = useState('');
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\repositories\ClienteRepository.tsx
+import {
+  collection,
+  getDocs,
+  getDoc,
+  deleteDoc,
+  doc,
+  updateDoc
+} from 'firebase/firestore';
+import { db } from '../firebaseConfig';
+import FirebaseService from '../services/FirebaseService';
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\repositories\ServicoRepository.tsx
+import {
+  collection,
+  getDocs,
+  getDoc,
+  deleteDoc,
+  doc,
+  updateDoc,
+} from 'firebase/firestore';
+import { db } from '../firebaseConfig';
+import FirebaseService from '../services/FirebaseService';
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\repositories\SolicitacaoRepository.tsx
+import { doc, collection, addDoc } from 'firebase/firestore';
+import { db } from '../firebaseConfig';
+
+export const criarSolicitacao = async (solicitacao: {
+  dataInicio: string;
+  dataFim: string;
+  veiculo?: string;
+  motivo: string;
+  descricao: string;
+  uid: string;
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\repositories\TipoServicoRepository.tsx
+import {
+  collection,
+  getDocs,
+  getDoc,
+  deleteDoc,
+  doc,
+  updateDoc,
+  setDoc
+} from 'firebase/firestore';
+import { db } from '../firebaseConfig';
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\services\FirebaseService.tsx
+// firebase-service.tsx
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../firebaseConfig"; // Importando a instância de db configurada no firebase-config
+
+class FirebaseService {
+  // Função genérica para salvar dados em qualquer coleção do Firestore
+  async saveData(collectionName: string, data: any) {
+    try {
+      if (Array.isArray(data)) {
+        // Se for uma lista, salva todos os itens da lista
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\types\Cliente.ts
+export interface Contato {
+    tipo: string;
+    valor: string;
+  }
+  
+  export interface Endereco {
+    rua: string;
+    numero: string;
+    bairro: string;
+    cidade: string;
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\types\Servico.ts
+import { Cliente } from "./Cliente";
+
+export interface Servico {
+    id: string;
+    tipo: string;
+    valor: string;
+    cliente?: Cliente; // cliente pode ser undefined, mas NÃO null
+    criadoEm?: string;
+}
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\types\TipoServico.ts
+// types/TipoServico.ts
+
+export interface TipoServico {
+    id: string;         // Identificador único do tipo de serviço
+    nome: string;       // Nome do tipo de serviço (ex: Limpeza Técnica, Polimento de Farol, etc.)
+    criadoEm: string;   // Data de criação do tipo de serviço
+  }
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\values\colors.tsx
+export const colorBranco = '#FFF';
+
+export const colorAzul = '#0D47A1E6';
+
+export const colorAzulClaro = '#0D47A1E6';
+// export const colorAzulClaro = '#5dade2'; // Exemplo
+
+export const colorVermelho = '#F00';
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\App.css
+/* src/global.css */
+
+/* Garante altura mínima */
+html, body, #root {
+  height: 100%;
+}
+
+/* Reset geral */
+* {
+  margin: 0;
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\App.tsx
+// App.tsx
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { UserProvider } from './contexts/UserContext';
+
+// Layouts
+import PublicLayout from './layouts/PublicLayout';
+import PrivateLayout from './layouts/PrivateLayout';
+
+// Componentes
+import Header from './components/Header';
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\firebaseConfig.ts
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
+
+// Configurações via .env
+const firebaseConfig = {
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\index.css
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: '#F5F5F5';
+  font-family: Arial, sans-serif;
+}
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\main.tsx
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './firebaseConfig';
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.tsx'
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App />
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\src\vite-env.d.ts
+/// <reference types="vite/client" />
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\eslint.config.js
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import tseslint from 'typescript-eslint'
+
+export default tseslint.config(
+  { ignores: ['dist'] },
+  {
+    extends: [js.configs.recommended, ...tseslint.configs.recommended],
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\index.html
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/carro-icon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="home.css" />
+    <title>Serviços Monitoramento</title>
+  </head>
+  <body>
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\package-lock.json
+{
+  "name": "projeto-videomonitoramento-praia-sol",
+  "version": "0.0.0",
+  "lockfileVersion": 3,
+  "requires": true,
+  "packages": {
+    "": {
+      "name": "projeto-videomonitoramento-praia-sol",
+      "version": "0.0.0",
+      "dependencies": {
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\package.json
+{
+  "name": "projeto-videomonitoramento-praia-sol",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\tsconfig.app.json
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",  // Configuração para armazenar os arquivos de build
+    "target": "ES2020",  // O código será compilado para o ES2020 (bom para navegadores modernos)
+    "useDefineForClassFields": true,  // Garantir que campos de classe sejam tratados corretamente
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],  // Adiciona as bibliotecas necessárias para JavaScript moderno e DOM
+    "module": "ESNext",  // Usar ESNext como o sistema de módulos (import/export)
+    "skipLibCheck": true,  // Ignora a verificação de tipos em arquivos de bibliotecas, para melhorar o desempenho
+    "moduleResolution": "bundler",  // Resolução de módulos específica para bundlers como Webpack ou Vite
+    "allowImportingTsExtensions": true,  // Permite importar arquivos .ts com a extensão
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\tsconfig.json
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"]
+  },
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\tsconfig.node.json
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+    "target": "ES2022",  // Mudar para ES2022 para garantir maior compatibilidade
+    "lib": ["ES2022", "DOM"],  // Use ES2022 e DOM (se necessário)
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+
+---
+
+Arquivo: C:\Users\Developer\Desktop\PRAIA SOL\github\Helius\videomonitoramento\react-vite\vite.config.ts
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react()],
+})
+
+---
+

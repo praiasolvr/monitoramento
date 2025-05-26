@@ -1,0 +1,99 @@
+/* src/global.css */
+
+/* Garante altura mínima */
+html, body, #root {
+  height: 100%;
+}
+
+/* Reset geral */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'Arial', sans-serif;
+  background-color: #f7f9fc;
+  color: #333;
+}
+
+/* Scrollbar estilizada */
+nav::-webkit-scrollbar {
+  width: 6px;
+}
+
+nav::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+nav::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Animação do overlay blur */
+.overlay-blur {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Botão animado */
+.button-animate {
+  transition: transform 0.3s ease;
+}
+
+.button-animate.rotate {
+  transform: rotate(180deg);
+}
+
+/* Padding automático para conteúdo depois do header fixo */
+main {
+  padding-top: 80px; /* Espaço reservado para header fixo */
+}
+
+/* Estilo geral para containers */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-inline: 2px; /* Espaço lateral padrão */
+}
+
+/* Inputs, selects e textareas ocupam 100% */
+input, textarea, select {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+/* Botões e links animados */
+button, a {
+  transition: all 0.3s ease;
+}
+
+/* Estilos responsivos */
+@media (max-width: 767px) {
+  main {
+    padding-top: 80px; /* No mobile também respeita o header */
+  }
+
+  .container {
+    padding-inline: 8px; /* Um pouco mais para ficar bonito no mobile */
+  }
+
+  input, textarea, select {
+    padding: 10px;
+    font-size: 1rem;
+  }
+}
